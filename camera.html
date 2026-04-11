@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>PiP Camera</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a href="https://github.com/zozimustechnologies/pipcamera" class="github-btn" target="_blank" title="View on GitHub">&lt;&gt;</a>
+  <div class="container">
+    <div class="header">
+      <div class="header-content">
+        <div class="header-icon">📷</div>
+        <h1>PiP Camera</h1>
+        <p class="subtitle">Picture-in-Picture Camera</p>
+      </div>
+      <a href="https://wise.com/pay/business/sandeepchadda?utm_source=open_link" class="donate-btn" target="_blank">Donate</a>
+    </div>
+    
+    <div class="video-container">
+      <video id="video" autoplay></video>
+    </div>
+    
+    <div class="controls">
+      <button id="startBtn">Start Camera</button>
+      <button id="pipBtn" disabled>Enter PiP</button>
+    </div>
+    
+    <div class="status">
+      <p id="status">Click Start Camera to begin</p>
+    </div>
+  </div>
+  
+  <div class="footer">
+    <p class="copyright">© 2026 Zozimus Technologies. All rights reserved.</p>
+  </div>
+  
+  <script>
+// Camera page script
+
+let stream = null;
+
+document.getElementById('startBtn').addEventListener('click', async () => {
+  // If camera is already running, stop it
+  if (stream) {
+    console.log('Stopping camera...');
+    stream.getTracks().forEach(track => track.stop());
+    stream = null;
+    const video = document.getElementById('video');
+    video.srcObject = null;
+    video.style.display = 'none';
+    document.getElementById('pipBtn').disabled = true;
+    document.getElementById('startBtn').textContent = 'Start Camera';
+    updateStatus('Camera stopped', '');
+    return;
+  }
+  
+  console.log('Start Camera button clicked');
+  
+  // Check if mediaDevices is available
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    updateStatus('Error: Camera API not supported', 'error');
+    console.error('Camera API not supported');
+    return;
+  }
+  
+  try {
+    console.log('Requesting camera access...');
+    updateStatus('Requesting camera permission...', '');
+    
+    // This call will trigger the browser permission prompt
+    stream = await navigator.mediaDevices.getUserMedia({ 
+      video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false 
+    });
+    
+    console.log('Camera access granted');
+    const video = document.getElementById('video');
+    video.srcObject = stream;
+    video.style.display = 'block';
+    document.getElementById('pipBtn').disabled = false;
+    document.getElementById('startBtn').textContent = 'Stop Camera';
+    updateStatus('Camera started. Click Enter PiP to continue.', 'success');
+    
+  } catch (error) {
+    console.error('Error accessing camera:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    updateStatus('Error: ' + error.name + ' - ' + error.message, 'error');
+  }
+});
+
+document.getElementById('pipBtn').addEventListener('click', async () => {
+  const video = document.getElementById('video');
+  try {
+    if (video !== document.pictureInPictureElement) {
+      await video.requestPictureInPicture();
+      updateStatus('Entered Picture-in-Picture mode', 'success');
+      document.getElementById('pipBtn').textContent = 'Exit PiP';
+    } else {
+      await document.exitPictureInPicture();
+      updateStatus('Exited Picture-in-Picture mode', '');
+      document.getElementById('pipBtn').textContent = 'Enter PiP';
+    }
+  } catch (error) {
+    console.error('Error with PiP:', error);
+    updateStatus('Error: ' + error.name + ' - ' + error.message, 'error');
+  }
+});
+
+// Handle PiP exit
+document.addEventListener('leavepictureinpicture', () => {
+  updateStatus('Exited Picture-in-Picture mode', '');
+  document.getElementById('pipBtn').textContent = 'Enter PiP';
+});
+
+function updateStatus(message, type) {
+  const statusEl = document.getElementById('status');
+  const statusContainer = document.querySelector('.status');
+  statusEl.textContent = message;
+  statusContainer.className = 'status ' + type;
+}
+  </script>
+</body>
+</html>
+</body>
+</html>

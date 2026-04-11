@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Test PiP Camera</title>
+  <style>
+    body {
+      width: 300px;
+      padding: 10px;
+    }
+    button {
+      margin: 5px;
+    }
+    video {
+      width: 100%;
+      max-width: 400px;
+      margin: 20px auto;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <h3>Test PiP Camera</h3>
+  <button id="startBtn">Start Camera</button>
+  <button id="pipBtn" disabled>Enter Picture-in-Picture</button>
+  <video id="video" autoplay></video>
+  <p id="status">Click to start camera</p>
+  <script>
+// Test script
+
+let stream = null;
+
+document.getElementById('startBtn').addEventListener('click', async () => {
+  console.log('Start Camera button clicked');
+  
+  // Check if mediaDevices is available
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    document.getElementById('status').textContent = 'Error: Camera API not supported';
+    return;
+  }
+  
+  // Check for available devices
+  const devices = await navigator.mediaDevices.enumerateDevices();
+  const videoDevices = devices.filter(device => device.kind === 'videoinput');
+  if (videoDevices.length === 0) {
+    document.getElementById('status').textContent = 'Error: No camera devices found';
+    return;
+  }
+  
+  try {
+    console.log('Requesting camera access...');
+    document.getElementById('status').textContent = 'Requesting camera permission...';
+    
+    // This call will trigger the browser permission prompt
+    stream = await navigator.mediaDevices.getUserMedia({ 
+      video: { width: { ideal: 1280 }, height: { ideal: 720 } },
+      audio: false 
+    });
+    
+    console.log('Camera access granted');
+    const video = document.getElementById('video');
+    video.srcObject = stream;
+    video.style.display = 'block';
+    document.getElementById('pipBtn').disabled = false;
+    document.getElementById('status').textContent = 'Camera started. Click PiP button.';
+  } catch (error) {
+    console.error('Error accessing camera:', error);
+    console.error('Error name:', error.name);
+    console.error('Error message:', error.message);
+    document.getElementById('status').textContent = 'Error: ' + error.name + ' - ' + error.message;
+  }
+});
+
+document.getElementById('pipBtn').addEventListener('click', async () => {
+  const video = document.getElementById('video');
+  try {
+    if (video !== document.pictureInPictureElement) {
+      await video.requestPictureInPicture();
+      document.getElementById('status').textContent = 'Entered PiP mode';
+    } else {
+      await document.exitPictureInPicture();
+      document.getElementById('status').textContent = 'Exited PiP mode';
+    }
+  } catch (error) {
+    console.error('Error with PiP:', error);
+    document.getElementById('status').textContent = 'Error: ' + error.name + ' - ' + error.message;
+  }
+});
+
+// Handle PiP exit
+document.addEventListener('leavepictureinpicture', () => {
+  document.getElementById('status').textContent = 'Exited PiP mode';
+});
+  </script>
+</body>
+</html>
