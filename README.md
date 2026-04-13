@@ -1,6 +1,6 @@
 # PiP Camera
 
-A lightweight Chrome extension that opens your camera in picture-in-picture mode, allowing you to video chat or present while browsing.
+A lightweight Edge extension that opens your camera in picture-in-picture mode, allowing you to video chat or present while browsing.
 
 ## Features
 
@@ -12,11 +12,9 @@ A lightweight Chrome extension that opens your camera in picture-in-picture mode
 
 ## Installation
 
-1. Clone or download this repository
-2. Open Chrome and go to `chrome://extensions/`
-3. Enable "Developer mode" (top right)
-4. Click "Load unpacked" and select this folder
-5. The PiP Camera icon will appear in your Chrome toolbar
+1. Search for PiP Camera on the [Microsoft Addons Store](https://microsoftedge.microsoft.com/addons/search?developer=Zozimus%20Technologies)
+2. Click **Get** to install your extension
+3. The PiP Camera icon will appear in your Edge toolbar
 
 ## Usage
 
@@ -29,7 +27,7 @@ A lightweight Chrome extension that opens your camera in picture-in-picture mode
 
 ## Requirements
 
-- Google Chrome (or Chromium-based browser)
+- Microsoft Edge (or Chromium-based browser)
 - Camera permission (you'll be prompted on first use)
 
 ## Permissions
