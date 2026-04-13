@@ -1,6 +1,12 @@
 # PiP Camera
 
 A lightweight Edge extension that opens your camera in picture-in-picture mode, allowing you to video chat or present while browsing.
+<p align="center">
+  <a href="https://wise.com/pay/business/sandeepchadda?utm_source=open_link">
+    <img src="https://img.shields.io/badge/Donate-Wise-00B9FF?style=for-the-badge&logo=wise" alt="Donate via Wise">
+  </a>
+</p>
+
 
 ## Features
 
