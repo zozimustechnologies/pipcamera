@@ -6,7 +6,7 @@
 
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', sans-serif;
-  background: linear-gradient(135deg, #4A7C8A 0%, #2C5364 100%);
+  background: linear-gradient(135deg, #3d7ea6 0%, #1a4a6e 100%);
   min-height: 100vh;
   overflow-y: auto;
   display: flex;
@@ -20,7 +20,7 @@ body {
   background: white;
   border-radius: 16px;
   padding: 24px;
-  box-shadow: 0 20px 60px rgba(44, 83, 100, 0.3);
+  box-shadow: 0 20px 60px rgba(26, 74, 110, 0.3);
   max-width: 600px;
   width: 100%;
 }
@@ -40,7 +40,7 @@ body {
 .header-icon {
   width: 50px;
   height: 50px;
-  background: linear-gradient(135deg, #4A7C8A 0%, #2C5364 100%);
+  background: linear-gradient(135deg, #3d7ea6 0%, #1a4a6e 100%);
   border-radius: 12px;
   display: flex;
   align-items: center;
@@ -100,20 +100,20 @@ button {
 }
 
 #startBtn {
-  background: linear-gradient(135deg, #4A7C8A 0%, #2C5364 100%);
+  background: linear-gradient(135deg, #3d7ea6 0%, #1a4a6e 100%);
   color: white;
-  box-shadow: 0 4px 15px rgba(74, 124, 138, 0.3);
+  box-shadow: 0 4px 15px rgba(61, 126, 166, 0.3);
 }
 
 #startBtn:hover:not(:disabled) {
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 124, 138, 0.4);
+  box-shadow: 0 6px 20px rgba(61, 126, 166, 0.4);
 }
 
 #pipBtn {
   background: white;
-  color: #4A7C8A;
-  border: 2px solid #4A7C8A;
+  color: #3d7ea6;
+  border: 2px solid #3d7ea6;
 }
 
 #pipBtn:hover:not(:disabled) {
@@ -140,7 +140,7 @@ button:active:not(:disabled) {
 }
 
 #status {
-  color: #4A7C8A;
+  color: #3d7ea6;
   font-size: 14px;
   font-weight: 500;
   margin: 0;
@@ -201,9 +201,9 @@ button:active:not(:disabled) {
   right: 20px;
   padding: 10px 14px;
   background: transparent;
-  color: #4A7C8A;
+  color: #3d7ea6;
   text-decoration: none;
-  border: 2px solid #4A7C8A;
+  border: 2px solid #3d7ea6;
   border-radius: 8px;
   font-size: 18px;
   font-weight: 600;
@@ -216,10 +216,10 @@ button:active:not(:disabled) {
 }
 
 .github-btn:hover {
-  background: #4A7C8A;
+  background: #3d7ea6;
   color: white;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(74, 124, 138, 0.4);
+  box-shadow: 0 6px 20px rgba(61, 126, 166, 0.4);
 }
 
 .zozimus-link {
@@ -228,6 +228,6 @@ button:active:not(:disabled) {
 }
 
 .zozimus-link:hover {
-  color: #4A7C8A;
+  color: #3d7ea6;
   text-decoration: underline;
 }
