@@ -61,3 +61,7 @@ Built to make video calling and presentations easier without cluttering your scr
 - Screen sharing while on a call
 - Live streaming with chat overlay
 - Remote presentations
+
+## Known Bugs
+
+- This extension does not work for camera access over remote devices or VMs.
