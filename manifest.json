@@ -2,12 +2,8 @@
   "manifest_version": 3,
   "name": "PiP Camera",
   "version": "1.0",
-  "description": "Open your camera in picture-in-picture mode",
-  "permissions": [
-    "activeTab",
-    "storage",
-    "camera"
-  ],
+  "description": "A rear-view camera for your workspace — keep your camera in picture-in-picture mode",
+  "permissions": [],
   "background": {
     "service_worker": "background.js"
   },
