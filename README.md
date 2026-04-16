@@ -65,3 +65,6 @@ Built to make video calling and presentations easier without cluttering your scr
 ## Known Bugs
 
 - This extension does not work for camera access over remote devices or VMs.
+
+## License
+[MIT](/LICENSE)
